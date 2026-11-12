@@ -1,0 +1,406 @@
+﻿<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta name="description" content="مكتبة ياسين المولى - المنصة الأولى للقرطاسية، الملازم الدراسية، الحقائب، ومستلزمات الرسم في العراق. توصيل سريع لكافة المحافظات والدفع عند الاستلام.">
+    <link rel="icon" href="assets/images/logo.jpg">
+    <title>مكتبة ياسين المولى | المتجر الرسمي للقرطاسية والملازم</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+    <!-- شريط الإعلانات الذكي -->
+    <div class="announcement-bar">
+        <div class="container announcement-flex">
+            <span>🚀 توصيل سريع لباب البيت في بغداد (4,000 د.ع) والمحافظات (5,000 د.ع) — <strong>مجاناً للطلبات فوق 50,000 د.ع!</strong></span>
+            <span class="promo-pill">كود الخصم: <code>YASSIN10</code></span>
+        </div>
+    </div>
+
+    <!-- الشريط العلوي للتواصل -->
+    <div class="top-utility-bar">
+        <div class="container utility-flex">
+            <div class="utility-links">
+                <a href="tel:07752742334"><i class="fas fa-phone-alt"></i> 07752742334</a>
+                <span><i class="fas fa-clock"></i> خدمة العملاء: 9 صباحاً - 11 مساءً</span>
+            </div>
+            <div class="utility-socials">
+                <a href="https://www.instagram.com/mktb_yaseen?xtok=MW9lcG9taGVmM2Zlbw==" target="_blank" rel="noopener noreferrer" title="انستغرام"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.facebook.com/p/%D9%85%D9%83%D8%AA%D8%A8%D8%A9-%D9%8A%D8%A7%D8%B3%D9%8A%D9%86-%D8%A7%D9%84%D9%85%D9%88%D9%84%D9%89-61550539311936/" target="_blank" rel="noopener noreferrer" title="فيسبوك"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://t.me/anmar_almola" target="_blank" rel="noopener noreferrer" title="تيليغرام"><i class="fab fa-telegram-plane"></i></a>
+                <a href="https://wa.me/9647752742334" target="_blank" rel="noopener noreferrer" title="واتساب"><i class="fab fa-whatsapp"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <!-- الهيدر الرئيسي (بنظام المتاجر العالمية) -->
+    <header class="main-header">
+        <div class="container header-grid">
+            <!-- الشعار -->
+            <div class="brand-area">
+                <button class="mobile-drawer-trigger" id="mobileMenuBtn" aria-label="القائمة"><i class="fas fa-bars"></i></button>
+                <a href="#" class="brand-logo" onclick="resetStoreFilters()">
+                    <img src="assets/images/logo.jpg" alt="مكتبة ياسين المولى" class="brand-custom-logo">
+                    <div class="logo-text">
+                        <span class="brand-name">ياسين <strong>المولى</strong></span>
+                        <span class="brand-sub">للقرطاسية والملازم</span>
+                    </div>
+                </a>
+            </div>
+
+            <!-- شريط البحث المركزي الذكي -->
+            <div class="central-search">
+                <div class="search-box">
+                    <i class="fas fa-search search-icon"></i>
+                    <input type="text" id="liveSearchInput" placeholder="ابحث عن ملزمة، دفتر، حقيبة، ألوان، هدايا..." autocomplete="off">
+                    <button type="button" id="clearSearchBtn" class="clear-search hidden"><i class="fas fa-times"></i></button>
+                </div>
+                <div class="search-suggestions hidden" id="searchSuggestions"></div>
+            </div>
+
+            <!-- أزرار التحكم السريعة -->
+            <div class="header-controls">
+                <button class="control-btn" id="themeToggleBtn" title="تبديل الوضع الليلي/النهاري">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <button class="control-btn" id="ordersHistoryBtn" title="طلباتي السابقة">
+                    <i class="fas fa-receipt"></i>
+                    <span class="control-label">طلباتي</span>
+                </button>
+                <button class="control-btn" id="wishlistToggleBtn" title="المفضلة">
+                    <i class="far fa-heart"></i>
+                    <span class="count-pill danger" id="wishlistCount">0</span>
+                </button>
+                <button class="cart-trigger-btn" id="cartToggleBtn">
+                    <div class="cart-icon-wrap">
+                        <i class="fas fa-shopping-bag"></i>
+                        <span class="count-pill accent" id="cartCount">0</span>
+                    </div>
+                    <div class="cart-text-wrap">
+                        <span class="cart-label">السلة</span>
+                        <span class="cart-mini-total" id="headerMiniTotal">0 د.ع</span>
+                    </div>
+                </button>
+            </div>
+        </div>
+
+        <!-- شريط الأقسام -->
+        <nav class="categories-navbar" id="mainNav">
+            <div class="container">
+                <ul class="cat-list">
+                    <li><a href="#" class="active" data-cat="الكل"><i class="fas fa-th-large"></i> جميع المنتجات</a></li>
+                    <li><a href="#" data-cat="ملازم"><i class="fas fa-graduation-cap"></i> ملازم دراسية</a></li>
+                    <li><a href="#" data-cat="قرطاسية"><i class="fas fa-pen-nib"></i> قرطاسية</a></li>
+                    <li><a href="#" data-cat="مستلزمات مدرسية"><i class="fas fa-backpack"></i> مستلزمات مدرسية</a></li>
+                    <li><a href="#" data-cat="مستلزمات مكتبية"><i class="fas fa-briefcase"></i> مستلزمات مكتبية</a></li>
+                    <li><a href="#" data-cat="مستلزمات الرسم"><i class="fas fa-palette"></i> مستلزمات الرسم</a></li>
+                    <li><a href="#" data-cat="حقائب"><i class="fas fa-shopping-bag"></i> حقائب</a></li>
+                    <li><a href="#" data-cat="هدايا"><i class="fas fa-gift"></i> هدايا</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <!-- الواجهة الرئيسية السينمائية (Split Hero Section) -->
+    <section class="hero-showcase">
+        <div class="container hero-layout">
+            <div class="hero-info">
+                <div class="hero-pill"><i class="fas fa-sparkles"></i> تشكيلة العام الدراسي الجديد 2026</div>
+                <h1>كل ما يحتاجه الطالب والفنان في <span class="highlight-text">مكان واحد</span></h1>
+                <p>نوفر لك أحدث الملازم الوزارية، القرطاسية المستوردة، الحقائب الطبية، وأدوات الرسم الاحترافية بأعلى جودة وأسرع توصيل لجميع محافظات العراق.</p>
+                <div class="hero-actions">
+                    <button class="btn-primary-lg" id="shopNowBtn">ابدأ التسوق الآن <i class="fas fa-arrow-left"></i></button>
+                    <button class="btn-outline-lg" onclick="filterByCategory('ملازم')">تصفح الملازم</button>
+                </div>
+                <div class="hero-stats">
+                    <div class="stat-box"><strong>+1,500</strong><span>منتج متنوع</span></div>
+                    <div class="stat-divider"></div>
+                    <div class="stat-box"><strong>18</strong><span>محافظة عراقية</span></div>
+                    <div class="stat-divider"></div>
+                    <div class="stat-box"><strong>100%</strong><span>دفع عند الاستلام</span></div>
+                </div>
+            </div>
+
+            <div class="hero-visual">
+                <div class="hero-card-stack">
+                    <img src="https://images.unsplash.com/photo-1456735190827-d1262f71b8a3?q=80&w=900&auto=format&fit=crop" alt="مكتبة ياسين المولى" class="hero-main-img">
+                    <div class="floating-glass-card top-card">
+                        <i class="fas fa-truck-fast"></i>
+                        <div>
+                            <strong>توصيل سريع</strong>
+                            <span>خلال 24 - 48 ساعة</span>
+                        </div>
+                    </div>
+                    <div class="floating-glass-card bottom-card">
+                        <i class="fas fa-shield-check"></i>
+                        <div>
+                            <strong>ضمان الجودة</strong>
+                            <span>استبدال فوري لأي خلل</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- قسم المنتجات الرئيسي -->
+    <main class="store-main container" id="productsSection">
+        <div class="catalog-toolbar">
+            <div class="catalog-title-group">
+                <h2 id="currentCategoryTitle">أحدث المنتجات المميزة</h2>
+                <span class="products-counter" id="productsCountLabel">0 منتج</span>
+            </div>
+            <div class="catalog-filters">
+                <label class="checkbox-filter">
+                    <input type="checkbox" id="onlyDiscountCheckbox"> عروض وتخفيضات فقط
+                </label>
+                <select id="sortProducts" class="pro-select">
+                    <option value="default">الترتيب: الموصى به</option>
+                    <option value="low-high">السعر: من الأقل للأعلى</option>
+                    <option value="high-low">السعر: من الأعلى للأقل</option>
+                    <option value="discount">أكبر نسبة خصم</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="products-grid" id="productsGrid">
+            <!-- تُملأ تلقائياً عبر JavaScript -->
+        </div>
+    </main>
+
+    <!-- الفوتر الاحترافي -->
+    <footer class="pro-footer">
+        <div class="container footer-grid">
+            <div class="footer-col">
+                <div class="footer-brand"><i class="fas fa-book-open"></i> مكتبة ياسين <span>المولى</span></div>
+                <p>وجهتك الموثوقة للقرطاسية، الملازم الدراسية، ومستلزمات المكاتب والفنانين في العراق. نسعى لتقديم تجربة تسوق إلكترونية سهلة وآمنة.</p>
+                <div class="footer-socials">
+                    <a href="https://www.instagram.com/mktb_yaseen?xtok=MW9lcG9taGVmM2Zlbw==" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.facebook.com/p/%D9%85%D9%83%D8%AA%D8%A8%D8%A9-%D9%8A%D8%A7%D8%B3%D9%8A%D9%86-%D8%A7%D9%84%D9%85%D9%88%D9%84%D9%89-61550539311936/" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://t.me/anmar_almola" target="_blank" rel="noopener noreferrer"><i class="fab fa-telegram-plane"></i></a>
+                    <a href="https://wa.me/9647752742334" target="_blank" rel="noopener noreferrer"><i class="fab fa-whatsapp"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-col">
+                <h4>أقسام المتجر</h4>
+                <ul>
+                    <li><a href="#productsSection" onclick="filterByCategory('ملازم')">الملازم الدراسية</a></li>
+                    <li><a href="#productsSection" onclick="filterByCategory('قرطاسية')">القرطاسية والأقلام</a></li>
+                    <li><a href="#productsSection" onclick="filterByCategory('حقائب')">الحقائب المدرسية</a></li>
+                    <li><a href="#productsSection" onclick="filterByCategory('مستلزمات الرسم')">أدوات الرسم</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>تواصل وخدمة الزبائن</h4>
+                <ul class="contact-list">
+                    <li><i class="fas fa-phone-alt"></i> 07752742334</li>
+                    <li><i class="fab fa-telegram-plane"></i> @anmar_almola</li>
+                    <li><i class="fas fa-truck"></i> توصيل لجميع محافظات العراق</li>
+                    <li><i class="fas fa-money-bill-wave"></i> الدفع نقداً عند الاستلام</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="container footer-bottom">
+            <p>جميع الحقوق محفوظة &copy; 2026 مكتبة ياسين المولى.</p>
+            <button id="secretAdminTrigger" class="admin-stealth-btn" title="بوابة الإدارة"><i class="fas fa-lock"></i></button>
+        </div>
+    </footer>
+
+    <!-- زر الواتساب العائم -->
+    <a href="https://wa.me/9647752742334" class="whatsapp-float" target="_blank" rel="noopener noreferrer" title="تحدث معنا على واتساب">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- سلة المشتريات الجانبية المتطورة -->
+    <div class="drawer-backdrop" id="cartOverlay"></div>
+    <aside class="cart-sidebar" id="cartDrawer">
+        <div class="cart-sidebar-header">
+            <h3><i class="fas fa-shopping-bag"></i> سلة المشتريات</h3>
+            <button class="close-drawer-btn" id="closeCartBtn"><i class="fas fa-times"></i></button>
+        </div>
+
+        <!-- شريط التقدم للحصول على توصيل مجاني -->
+        <div class="free-shipping-box" id="freeShippingBox">
+            <p id="freeShippingText">أضف منتجات بقيمة <strong>50,000 د.ع</strong> للحصول على توصيل مجاني!</p>
+            <div class="progress-track">
+                <div class="progress-fill" id="freeShippingBar" style="width: 0%;"></div>
+            </div>
+        </div>
+
+        <div class="cart-sidebar-body" id="cartItemsContainer"></div>
+
+        <div class="cart-sidebar-footer">
+            <div class="coupon-bar">
+                <input type="text" id="couponInput" placeholder="أدخل كود الخصم (YASSIN10)">
+                <button type="button" id="applyCouponBtn">تطبيق</button>
+            </div>
+
+            <div class="invoice-summary">
+                <div class="inv-row"><span>المجموع الفرعي:</span> <span id="subTotalPrice">0 د.ع</span></div>
+                <div class="inv-row"><span>أجور التوصيل:</span> <span id="deliveryFeeText">اختر المحافظة</span></div>
+                <div class="inv-row discount hidden" id="discountRow"><span>الخصم (10%):</span> <span id="discountAmount">0 د.ع</span></div>
+                <div class="inv-total"><span>الإجمالي النهائي:</span> <span id="finalTotalPrice">0 د.ع</span></div>
+            </div>
+
+            <form id="checkoutForm" class="pro-checkout-form">
+                <div class="form-row-2">
+                    <input type="text" id="custName" placeholder="الاسم الكامل *" required maxlength="60">
+                    <input type="tel" id="custPhone" placeholder="رقم الهاتف (07XXXXXXXXX) *" required maxlength="11">
+                </div>
+                <select id="custCity" required>
+                    <option value="">اختر المحافظة لحساب التوصيل *</option>
+                    <option value="بغداد" data-fee="4000">بغداد — 4,000 د.ع</option>
+                    <option value="البصرة" data-fee="5000">البصرة — 5,000 د.ع</option>
+                    <option value="نينوى" data-fee="5000">نينوى — 5,000 د.ع</option>
+                    <option value="أربيل" data-fee="5000">أربيل — 5,000 د.ع</option>
+                    <option value="النجف" data-fee="5000">النجف — 5,000 د.ع</option>
+                    <option value="كربلاء" data-fee="5000">كربلاء — 5,000 د.ع</option>
+                    <option value="بابل" data-fee="5000">بابل — 5,000 د.ع</option>
+                    <option value="الأنبار" data-fee="5000">الأنبار — 5,000 د.ع</option>
+                    <option value="ديالى" data-fee="5000">ديالى — 5,000 د.ع</option>
+                    <option value="كركوك" data-fee="5000">كركوك — 5,000 د.ع</option>
+                    <option value="صلاح الدين" data-fee="5000">صلاح الدين — 5,000 د.ع</option>
+                    <option value="واسط" data-fee="5000">واسط — 5,000 د.ع</option>
+                    <option value="ذي قار" data-fee="5000">ذي قار — 5,000 د.ع</option>
+                    <option value="القادسية" data-fee="5000">القادسية — 5,000 د.ع</option>
+                    <option value="ميسان" data-fee="5000">ميسان — 5,000 د.ع</option>
+                    <option value="المثنى" data-fee="5000">المثنى — 5,000 د.ع</option>
+                    <option value="السليمانية" data-fee="5000">السليمانية — 5,000 د.ع</option>
+                    <option value="دهوك" data-fee="5000">دهوك — 5,000 د.ع</option>
+                </select>
+                <input type="text" id="custAddress" placeholder="العنوان بالتفصيل (المنطقة / أقرب نقطة دالة) *" required maxlength="120">
+                <button type="submit" class="confirm-whatsapp-btn">
+                    <i class="fab fa-whatsapp"></i> إرسال الطلب وتأكيد الفاتورة
+                </button>
+            </form>
+        </div>
+    </aside>
+
+    <!-- نافذة النظرة السريعة للمنتج مع اختيار النوع/اللون -->
+    <div class="pro-modal-overlay" id="quickViewModal">
+        <div class="pro-modal-box">
+            <button class="modal-close-x" id="closeQuickView"><i class="fas fa-times"></i></button>
+            <div class="qv-grid">
+                <div class="qv-img-box">
+                    <img src="" id="modalImg" alt="المنتج">
+                </div>
+                <div class="qv-info-box">
+                    <span class="qv-cat" id="modalCategory">القسم</span>
+                    <h2 id="modalTitle">اسم المنتج</h2>
+                    <div class="qv-rating">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                        <span>(منتج أصلي مضمون)</span>
+                    </div>
+                    <div class="qv-price" id="modalPrice">0 د.ع</div>
+                    <p class="qv-desc" id="modalDesc">وصف المنتج</p>
+                    
+                    <div class="qv-variants hidden" id="modalVariantsBox">
+                        <label>اختر النوع / اللون:</label>
+                        <div class="variant-pills" id="modalVariantPills"></div>
+                    </div>
+
+                    <button class="btn-primary-lg" id="modalAddToCartBtn" style="width: 100%; justify-content: center; margin-top: 20px;">
+                        <i class="fas fa-cart-plus"></i> إضافة إلى السلة
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- نافذة المفضلة -->
+    <div class="pro-modal-overlay" id="wishlistModal">
+        <div class="pro-modal-box" style="max-width: 520px;">
+            <button class="modal-close-x" id="closeWishlistModal"><i class="fas fa-times"></i></button>
+            <h3 class="modal-heading"><i class="fas fa-heart" style="color: #ef4444;"></i> قائمة المفضلة</h3>
+            <div id="wishlistItemsContainer"></div>
+        </div>
+    </div>
+
+    <!-- نافذة سجل طلبات الزبون -->
+    <div class="pro-modal-overlay" id="ordersModal">
+        <div class="pro-modal-box" style="max-width: 560px;">
+            <button class="modal-close-x" id="closeOrdersModal"><i class="fas fa-times"></i></button>
+            <h3 class="modal-heading"><i class="fas fa-receipt" style="color: var(--accent);"></i> سجل طلباتك السابقة</h3>
+            <div id="ordersHistoryContainer"></div>
+        </div>
+    </div>
+
+    <!-- لوحة تحكم الإدارة المتكاملة (Pro Admin Dashboard) -->
+    <div class="pro-modal-overlay" id="adminModal">
+        <div class="pro-modal-box" style="max-width: 680px;">
+            <button class="modal-close-x" id="closeAdminModal"><i class="fas fa-times"></i></button>
+            
+            <!-- شاشة الدخول -->
+            <div id="adminLoginSection">
+                <h3 class="modal-heading"><i class="fas fa-shield-alt"></i> بوابة إدارة مكتبة ياسين المولى</h3>
+                <p style="font-size: 13.5px; color: var(--text-muted); margin-bottom: 15px;">أدخل كلمة المرور المشفرة للوصول إلى لوحة التحكم والمخزون.</p>
+                <input type="password" id="adminPasswordInput" class="pro-input" placeholder="كلمة المرور السرية">
+                <p id="adminErrorMsg" style="color: #ef4444; font-size: 13px; margin: 8px 0;"></p>
+                <button id="adminLoginSubmit" class="btn-primary-lg" style="width: 100%; justify-content: center; margin-top: 10px;">دخول آمن</button>
+            </div>
+
+            <!-- لوحة التحكم -->
+            <div id="adminDashboardSection" class="hidden">
+                <div class="admin-top-bar">
+                    <h3><i class="fas fa-sliders-h"></i> لوحة الإدارة والمخزون</h3>
+                    <button id="adminLogoutBtn" class="btn-danger-sm">تسجيل خروج</button>
+                </div>
+
+                <!-- إحصائيات سريعة -->
+                <div class="admin-stats-grid" id="adminStatsGrid"></div>
+
+                <!-- إضافة منتج جديد -->
+                <form id="addProductForm" class="admin-add-form">
+                    <h4>+ إضافة منتج جديد</h4>
+                    <div class="form-row-2">
+                        <input type="text" id="newProdName" class="pro-input" placeholder="اسم المنتج *" required>
+                        <select id="newProdCat" class="pro-input" required>
+                            <option value="ملازم">ملازم</option>
+                            <option value="قرطاسية">قرطاسية</option>
+                            <option value="مستلزمات مدرسية">مستلزمات مدرسية</option>
+                            <option value="مستلزمات مكتبية">مستلزمات مكتبية</option>
+                            <option value="مستلزمات الرسم">مستلزمات الرسم</option>
+                            <option value="حقائب">حقائب</option>
+                            <option value="هدايا">هدايا</option>
+                        </select>
+                    </div>
+                    <div class="form-row-2">
+                        <input type="number" id="newProdPrice" class="pro-input" placeholder="السعر الحالي (د.ع) *" required min="250">
+                        <input type="number" id="newProdOldPrice" class="pro-input" placeholder="السعر القديم (اختياري للخصم)" min="250">
+                    </div>
+                    <div class="form-row-2">
+                        <input type="text" id="newProdImg" class="pro-input" placeholder="رابط الصورة أو مسارها (images/1.jpg) *" required>
+                        <input type="text" id="newProdVariants" class="pro-input" placeholder="خيارات (مفصولة بفاصلة: أزرق, أسود, أحمر)">
+                    </div>
+                    <input type="text" id="newProdDesc" class="pro-input" placeholder="وصف احترافي للمنتج *" required>
+                    <button type="submit" class="confirm-whatsapp-btn" style="margin-top: 5px;">نشر المنتج في المتجر</button>
+                </form>
+
+                <button type="button" id="exportProductsBtn" class="export-code-btn">
+                    <i class="fas fa-copy"></i> نسخ كود المنتجات المحدث للنشر على GitHub
+                </button>
+
+                <div class="admin-prod-list" id="adminProductsList"></div>
+            </div>
+        </div>
+    </div>
+
+    <div id="toastContainer" class="toast-stack"></div>
+
+    <script src="assets/js/security.js?v=5"></script>
+    <script src="assets/js/app.js?v=5"></script>
+</body>
+</html>
+
+
+
+
+
+
